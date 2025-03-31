@@ -12,3 +12,10 @@ export interface Comment {
   email: string;
   body: string;
 }
+
+export interface PaginationProps {
+  currentPage: number;
+  totalPosts: number;
+  postsPerPage: number;
+  onPageChange: (page: number) => void;
+}

@@ -1,9 +1,4 @@
-interface PaginationProps {
-  currentPage: number;
-  totalPosts: number;
-  postsPerPage: number;
-  onPageChange: (page: number) => void;
-}
+import { PaginationProps } from './types';
 
 const Pagination = ({
   currentPage,

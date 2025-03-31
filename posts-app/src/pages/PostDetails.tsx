@@ -2,9 +2,10 @@ import { useParams } from 'react-router-dom';
 import { usePost } from '../hooks/usePosts';
 
 const PostDetails = () => {
-  const { id } = useParams<{ id: string }>();
+  const { id } = useParams();
   const postId = Number(id);
 
+  // Get the post and comments with postId
   const { postQuery, commentsQuery } = usePost(postId);
 
   const post = postQuery.data;
