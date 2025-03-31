@@ -1,5 +1,9 @@
 import { useQuery } from '@tanstack/react-query';
-import { fetchPosts } from '../services/postsServices';
+import {
+  fetchCommentsByPostId,
+  fetchPostById,
+  fetchPosts,
+} from '../services/postsServices';
 
 /**
  *
@@ -12,4 +16,21 @@ export const usePosts = (page: number, limit: number) => {
     queryKey: ['posts', page, limit],
     queryFn: () => fetchPosts(page, limit),
   });
+};
+
+export const usePost = (postId: number) => {
+  const postQuery = useQuery({
+    queryKey: ['post', postId],
+    queryFn: () => fetchPostById(postId),
+  });
+
+  const commentsQuery = useQuery({
+    queryKey: ['comments', postId],
+    queryFn: () => fetchCommentsByPostId(postId),
+  });
+
+  return {
+    postQuery,
+    commentsQuery,
+  };
 };

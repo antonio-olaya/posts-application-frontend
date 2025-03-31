@@ -2,13 +2,7 @@ import { useState } from 'react';
 import Pagination from './Pagination';
 import { POSTS_PER_PAGE } from '../const';
 import { usePosts } from '../hooks/usePosts';
-
-export interface Post {
-  userId: number;
-  id: number;
-  title: string;
-  body: string;
-}
+import { Link } from 'react-router-dom';
 
 const Posts = () => {
   const [page, setPage] = useState(1);
@@ -27,12 +21,14 @@ const Posts = () => {
 
   return (
     <div className='max-w-5xl mx-auto px-4'>
-      <h1 className='text-center mb-4 font-bold'>POSTS</h1>
-      {data?.data.map((post: Post) => (
-        <div key={post.id} className='border p-4 mb-4 rounded shadow'>
-          <h3>{post.title}</h3>
-          <p>{post.body}</p>
-        </div>
+      <h1 className='text-center text-3xl mb-4 font-bold'>POSTS</h1>
+      {data?.data.map((post) => (
+        <Link to={`/posts/${post.id}`} key={post.id}>
+          <div key={post.id} className='border p-4 mb-4 rounded shadow'>
+            <h3>{post.title}</h3>
+            <p>{post.body}</p>
+          </div>
+        </Link>
       ))}
       <Pagination
         currentPage={page}
